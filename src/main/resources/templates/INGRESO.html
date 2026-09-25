@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPORT FITNESS GYM</title>
+
+    <!-- Tipografías de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" th:href="@{/css/estiloINGRE.css}" href="/css/estiloINGRE.css">
+</head>
+<body>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo">
+                XPORT
+                <span>FITNESS GYM</span>
+            </div>
+            <nav>
+                <a th:href="@{/formulario}" class="active">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#instalaciones">Instalaciones</a>
+                <a href="#entrenadores">Entrenadores</a>
+                <a href="#horarios">Horarios</a>
+                <a href="#planes">Planes</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <i class="fa-solid fa-magnifying-glass search-btn"></i>
+                <div class="divider"></div>
+                <a th:href="@{/formulario}" class="btn-join">
+                    <span th:text="${usernameGuardado != null} ? ${usernameGuardado} : 'Únete ahora'">Únete ahora</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION CON FONDO DIFUMINADO -->
+    <section class="hero">
+        <!-- Capa de imagen de fondo difuminada -->
+        <div class="hero-bg-blur"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-container">
+            
+            <!-- Columna Izquierda -->
+            <div class="hero-left">
+                <div th:if="${mensaje}" class="alert-welcome">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span th:text="${mensaje}"></span>
+                </div>
+
+                <div class="hero-badge">TU MEJOR VERSIÓN</div>
+                <h1 class="hero-title">
+                    DISCIPLINA HOY,<br>
+                    <span class="neon-text">RESULTADOS MAÑANA</span>
+                </h1>
+                <p class="hero-desc">
+                    En NEXUS Fitness Club te ayudamos a lograr tus objetivos con entrenamiento de alto nivel, acompañamiento profesional y un ambiente motivador.
+                </p>
+                
+                <div class="hero-btns">
+                    <a href="#planes" class="btn-primary">
+                        Comienza ahora <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <button class="btn-video" id="openVideoBtn">
+                        <span class="play-icon"><i class="fa-solid fa-play"></i></span>
+                        <span>Ver video</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Columna Central: Imagen Atleta -->
+            <div class="hero-center">
+                <div class="text-bg-overlay">
+                    STRONGER<br>THAN<br>YESTERDAY
+                </div>
+                <div class="athlete-img-container">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" alt="Atleta NEXUS Fitness">
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Tarjeta Neón -->
+            <div class="hero-right">
+                <div class="neon-feature-box">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                        <div class="feature-text">
+                            <h4>ENTRENAMIENTO</h4>
+                            <span>DE FUERZA</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-regular fa-heart"></i></div>
+                        <div class="feature-text">
+                            <h4>SALUD Y</h4>
+                            <span>BIENESTAR</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="feature-text">
+                            <h4>MEJORA TU</h4>
+                            <span>RENDIMIENTO</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="feature-text">
+                            <h4>COMUNIDAD</h4>
+                            <span>FIT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BARRA DE ESTADÍSTICAS -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <i class="fa-solid fa-users stat-icon"></i>
+                <div class="stat-content">
+                    <div class="stat-num">+10,000</div>
+                    <div class="stat-label">MIEMBROS ACTIVOS</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-dumbbell stat-icon"></i>
+                <div class="stat-content">
+                    <div class="stat-num">+50</div>
+                    <div class="stat-label">CLASES SEMANALES</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-regular fa-star stat-icon"></i>
+                <div class="stat-content">
+                    <div class="stat-num">4.9/5</div>
+                    <div class="stat-label">VALORACIÓN DE USUARIOS</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-location-dot stat-icon"></i>
+                <div class="stat-content">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">SEDES EN LA CIUDAD</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTALACIONES -->
+    <section class="facilities" id="instalaciones">
+        <div class="facilities-container">
+            <div class="facilities-layout">
+                
+                <div class="facilities-header">
+                    <span class="section-tag">— NUESTRAS INSTALACIONES</span>
+                    <h2 class="section-title">TODO LO QUE NECESITAS<br>EN UN SOLO LUGAR</h2>
+                    <p class="section-desc">
+                        Contamos con espacios modernos, equipos de última generación y un equipo de entrenadores listos para apoyarte en cada paso.
+                    </p>
+                    <a href="#instalaciones" class="link-more">
+                        Conoce nuestras instalaciones <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="facilities-grid">
+                    <div class="facility-card">
+                        <div class="facility-img" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop');"></div>
+                        <div class="facility-info">
+                            <i class="fa-solid fa-dumbbell card-icon"></i>
+                            <h3>Área de pesas</h3>
+                            <p>Equipos modernos para entrenamiento de fuerza.</p>
+                        </div>
+                    </div>
+
+                    <div class="facility-card">
+                        <div class="facility-img" style="background-image: url('https://images.unsplash.com/photo-1576678927484-cc909957088c?q=80&w=600&auto=format&fit=crop');"></div>
+                        <div class="facility-info">
+                            <i class="fa-solid fa-person-running card-icon"></i>
+                            <h3>Zona cardio</h3>
+                            <p>Mejora tu resistencia y salud cardiovascular.</p>
+                        </div>
+                    </div>
+
+                    <div class="facility-card">
+                        <div class="facility-img" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=600&auto=format&fit=crop');"></div>
+                        <div class="facility-info">
+                            <i class="fa-solid fa-users card-icon"></i>
+                            <h3>Clases grupales</h3>
+                            <p>Crossfit, funcional, yoga, spinning y más.</p>
+                        </div>
+                    </div>
+
+                    <div class="facility-card">
+                        <div class="facility-img" style="background-image: url('https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=600&auto=format&fit=crop');"></div>
+                        <div class="facility-info">
+                            <i class="fa-solid fa-shower card-icon"></i>
+                            <h3>Vestuarios y duchas</h3>
+                            <p>Comodidad y seguridad en todo momento.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ENTRENADORES DESTACADOS -->
+    <section class="trainers-section" id="entrenadores">
+        <div class="trainers-container">
+            <div class="section-center-title">
+                <span class="section-tag">— EQUIPO PROFESIONAL</span>
+                <h2 class="section-title">ENTRENA CON LOS <span class="neon-text">MEJORES</span></h2>
+            </div>
+
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=600&auto=format&fit=crop');"></div>
+                    <div class="trainer-details">
+                        <h3>Carlos Mendoza</h3>
+                        <span class="trainer-role">Head Coach Crossfit</span>
+                        <div class="trainer-socials">
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trainer-card">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600&auto=format&fit=crop');"></div>
+                    <div class="trainer-details">
+                        <h3>Elena Rostova</h3>
+                        <span class="trainer-role">Especialista en Musculación</span>
+                        <div class="trainer-socials">
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trainer-card">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600&auto=format&fit=crop');"></div>
+                    <div class="trainer-details">
+                        <h3>David Guerrero</h3>
+                        <span class="trainer-role">Instrucción Cardio & Boxing</span>
+                        <div class="trainer-socials">
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABLA DE HORARIOS DE CLASES -->
+    <section class="schedule-section" id="horarios">
+        <div class="schedule-container">
+            <div class="section-center-title">
+                <span class="section-tag">— PROGRAMACIÓN SEMANAL</span>
+                <h2 class="section-title">HORARIO DE <span class="neon-text">CLASES</span></h2>
+            </div>
+
+            <div class="table-responsive">
+                <table class="nexus-table">
+                    <thead>
+                        <tr>
+                            <th>HORARIO</th>
+                            <th>LUNES</th>
+                            <th>MARTES</th>
+                            <th>MIÉRCOLES</th>
+                            <th>JUEVES</th>
+                            <th>VIERNES</th>
+                            <th>SÁBADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-col">07:00 AM - 08:30 AM</td>
+                            <td><span class="badge-class neon">Crossfit</span></td>
+                            <td><span class="badge-class">Spinning</span></td>
+                            <td><span class="badge-class neon">Crossfit</span></td>
+                            <td><span class="badge-class">Spinning</span></td>
+                            <td><span class="badge-class neon">Crossfit</span></td>
+                            <td><span class="badge-class">Yoga Power</span></td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">10:00 AM - 11:30 AM</td>
+                            <td><span class="badge-class">Musculación</span></td>
+                            <td><span class="badge-class neon">Funcional</span></td>
+                            <td><span class="badge-class">Musculación</span></td>
+                            <td><span class="badge-class neon">Funcional</span></td>
+                            <td><span class="badge-class">Musculación</span></td>
+                            <td><span class="badge-class neon">Boxeo Fit</span></td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">06:00 PM - 07:30 PM</td>
+                            <td><span class="badge-class neon">Boxeo Fit</span></td>
+                            <td><span class="badge-class">Yoga Power</span></td>
+                            <td><span class="badge-class neon">Boxeo Fit</span></td>
+                            <td><span class="badge-class">Spinning</span></td>
+                            <td><span class="badge-class neon">Crossfit</span></td>
+                            <td><span class="badge-class">Libre</span></td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">08:00 PM - 09:30 PM</td>
+                            <td><span class="badge-class">Spinning</span></td>
+                            <td><span class="badge-class neon">Crossfit</span></td>
+                            <td><span class="badge-class">Spinning</span></td>
+                            <td><span class="badge-class neon">Crossfit</span></td>
+                            <td><span class="badge-class">Funcional</span></td>
+                            <td><span class="badge-class">Cerrado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABLA COMPARATIVA DE PLANES -->
+    <section class="pricing-section" id="planes">
+        <div class="pricing-container">
+            <div class="section-center-title">
+                <span class="section-tag">— MEMBRESÍAS</span>
+                <h2 class="section-title">TABLA COMPARATIVA DE <span class="neon-text">PLANES</span></h2>
+            </div>
+
+            <div class="table-responsive">
+                <table class="nexus-table pricing-table">
+                    <thead>
+                        <tr>
+                            <th class="feature-title">BENEFICIOS</th>
+                            <th>PLAN BÁSICO</th>
+                            <th class="highlight-head">PLAN PRO VIP <span class="pop-tag">POPULAR</span></th>
+                            <th>PLAN BLACK</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-title">Acceso a Maquinaria y Pesas</td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-title">Clases Grupales Ilimitadas</td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-title">Evaluación Nutricional Mensual</td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-title">Invitado Gratis (1x por semana)</td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-title">Acceso Multisede Nacional</td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-title">Zona VIP Spa / Sauna</td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-xmark cross-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr class="price-row">
+                            <td class="feature-title">PRECIO MENSUAL</td>
+                            <td class="price-val">S/.150.00</td>
+                            <td class="price-val highlight-val">S/.200.00</td>
+                            <td class="price-val">S/.250.00</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><a href="#" class="btn-table">Elegir Básico</a></td>
+                            <td><a href="#" class="btn-primary">Elegir VIP Pro</a></td>
+                            <td><a href="#" class="btn-table">Elegir Black</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS CON AVATARES -->
+    <section class="reviews-section">
+        <div class="reviews-container">
+            <div class="section-center-title">
+                <span class="section-tag">— COMUNIDAD</span>
+                <h2 class="section-title">LO QUE DICEN NUESTROS <span class="neon-text">MIEMBROS</span></h2>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"NEXUS cambió completamente mi rutina. Las instalaciones son top y la energía del lugar te impulsa a dar el 100% siempre."</p>
+                    <div class="review-user">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Usuario">
+                        <div>
+                            <h4>Sofía Martínez</h4>
+                            <span>Miembro VIP Pro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Los entrenadores están súper capacitados. Logré bajar 8 kg y ganar masa muscular en solo 4 meses siguiendo su guía."</p>
+                    <div class="review-user">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Usuario">
+                        <div>
+                            <h4>Mateo Silva</h4>
+                            <span>Miembro Black</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"El ambiente, la música y las máquinas de última generación hacen que entrenar aquí sea la mejor parte de mi día."</p>
+                    <div class="review-user">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop" alt="Usuario">
+                        <div>
+                            <h4>Camila Torres</h4>
+                            <span>Miembro Básico</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">XPORT <span>FITNESS GYM</span></div>
+                <p>Tu centro de alto rendimiento integral. Entrena hoy, domina el mañana.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Rápidos</h4>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#instalaciones">Instalaciones</a>
+                <a href="#horarios">Horarios</a>
+                <a href="#planes">Planes</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Av. Principal 123, Ciudad</p>
+                <p><i class="fa-solid fa-phone"></i> +51 987 654 321</p>
+                <p><i class="fa-solid fa-envelope"></i> contacto@nexusfitness.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 XPORT FITNESS GYM. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 30) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPORT FITNESS GYM - Tu Mejor Versión</title>
+    
+    <!-- Fuentes tipográficas e Iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,700;0,900;1,800;1,900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Principal de Spring Boot -->
+    <link rel="stylesheet" th:href="@{/css/estiloformulario.css}" href="/css/estiloformulario.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#" class="brand">
+            <span class="logo-txt">XPORT</span>
+            <span class="sub-txt">FITNESS GYM</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#planes">Planes</a></li>
+            <li><a href="#clases">Clases</a></li>
+            <li><a href="#instalaciones">Instalaciones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <a href="#login-box" class="btn-unete">Únete ahora <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="tag-badge">TU MEJOR VERSIÓN</span>
+            <h1 class="hero-title">DISCIPLINA HOY,<br><span>RESULTADOS</span> MAÑANA</h1>
+            <p class="hero-desc">
+                En XPORT FITNESS GYM te ayudamos a lograr tus objetivos con entrenamiento de alto nivel, acompañamiento profesional y un ambiente motivador.
+            </p>
+
+            <div class="hero-btns">
+                <a href="#planes" class="btn-primary">Comienza ahora <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="btn-video">
+                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                    Ver video
+                </a>
+            </div>
+        </div>
+
+        <!-- TARJETA DE FORMULARIO DE ACCESO -->
+        <div class="cyber-card" id="login-box">
+            <div class="corner-tech top-left"></div>
+            <div class="corner-tech top-right"></div>
+            <div class="corner-tech bottom-left"></div>
+            <div class="corner-tech bottom-right"></div>
+
+            <!-- Logo Superior de la Tarjeta -->
+            <div class="card-brand-header">
+                <div class="brand-text">
+                    <h2 class="main-title">XPORT</h2>
+                    <p class="subtitle">FITNESS GYM</p>
+                </div>
+                <div class="brand-icon">
+                    <i class="fa-solid fa-dumbbell"></i>
+                </div>
+            </div>
+
+            <h2 class="form-heading">INICIO DE SESIÓN</h2>
+            <p class="form-subheading">SUBE DE NIVEL. INICIA TU ENTRENAMIENTO HOY.</p>
+
+            <!-- Mensajes Thymeleaf -->
+            <div th:if="${mensaje}" class="msg-success">
+                <p th:text="${mensaje}"></p>
+            </div>
+            <div th:if="${error}" class="msg-error">
+                <p th:text="${error}"></p>
+            </div>
+
+            <!-- Selector de Tipo de Usuario -->
+            <div class="role-selector">
+                <button type="button" class="role-btn active" id="btn-cliente" onclick="selectRole('cliente')">
+                    <i class="fa-solid fa-user"></i> CLIENTE
+                </button>
+                <button type="button" class="role-btn" id="btn-trabajador" onclick="selectRole('trabajador')">
+                    <i class="fa-solid fa-id-card"></i> TRABAJADOR
+                </button>
+            </div>
+
+            <!-- Formulario de Ingreso -->
+            <form th:action="@{/Ingresar}" method="POST" class="login-form">
+                <input type="hidden" name="userRole" id="userRole" th:value="${userRoleGuardado != null ? userRoleGuardado : 'cliente'}">
+
+                <div class="input-group">
+                    <label for="username"><i class="fa-solid fa-user"></i> USUARIO O EMAIL</label>
+                    <input type="text" id="username" name="username" 
+                           th:value="${usernameGuardado}" 
+                           placeholder="Ej. Juan Carlos / cliente@nexus.com" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="password"><i class="fa-solid fa-lock"></i> CONTRASEÑA</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    INICIAR ENTRENAMIENTO <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- Decoración inferior -->
+                <div class="tech-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- BARRA DE ESTADÍSTICAS -->
+    <section class="stats-bar">
+        <div class="stat-item">
+            <i class="fa-solid fa-users stat-icon"></i>
+            <div>
+                <div class="stat-num">+10,000</div>
+                <div class="stat-lbl">MIEMBROS ACTIVOS</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-dumbbell stat-icon"></i>
+            <div>
+                <div class="stat-num">+50</div>
+                <div class="stat-lbl">CLASES SEMANALES</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-star stat-icon"></i>
+            <div>
+                <div class="stat-num">4.9/5</div>
+                <div class="stat-lbl">VALORACIÓN DE USUARIOS</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-location-dot stat-icon"></i>
+            <div>
+                <div class="stat-num">3</div>
+                <div class="stat-lbl">SEDES EN LA CIUDAD</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE INSTALACIONES -->
+    <section class="section-facilities" id="instalaciones">
+        <div class="sec-tag">— NUESTRAS INSTALACIONES</div>
+        <h2 class="sec-title">TODO LO QUE NECESITAS<br>EN UN SOLO LUGAR</h2>
+        <p class="sec-desc">Contamos con espacios modernos, equipos de última generación y un equipo de entrenadores listos para apoyarte en cada paso.</p>
+
+        <div class="cards-grid">
+            <div class="facility-card">
+                <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Área de pesas">
+                <div class="card-body">
+                    <i class="fa-solid fa-dumbbell card-icon"></i>
+                    <h3 class="card-title">Área de pesas</h3>
+                    <p class="card-text">Equipos modernos para entrenamiento de fuerza e hipertrofia.</p>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN_RU7XnglP04f70txolzmv_cef9xJHPd-Vv1MXlkDjg&s" class="card-img" alt="Zona cardio">
+                <div class="card-body">
+                    <i class="fa-solid fa-person-running card-icon"></i>
+                    <h3 class="card-title">Zona cardio</h3>
+                    <p class="card-text">Mejora tu resistencia y salud cardiovascular con tecnología integrada.</p>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Clases grupales">
+                <div class="card-body">
+                    <i class="fa-solid fa-users card-icon"></i>
+                    <h3 class="card-title">Clases grupales</h3>
+                    <p class="card-text">Crossfit, funcional, yoga, spinning y más disciplinas diarias.</p>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Vestuarios">
+                <div class="card-body">
+                    <i class="fa-solid fa-shower card-icon"></i>
+                    <h3 class="card-title">Vestuarios y duchas</h3>
+                    <p class="card-text">Comodidad, casilleros privados y máxima seguridad en todo momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT SELECCIÓN ROL -->
+    <script>
+        function selectRole(role) {
+            const btnCliente = document.getElementById('btn-cliente');
+            const btnTrabajador = document.getElementById('btn-trabajador');
+            const inputRole = document.getElementById('userRole');
+            const inputUsername = document.getElementById('username');
+
+            if (role === 'cliente') {
+                btnCliente.classList.add('active');
+                btnTrabajador.classList.remove('active');
+                inputRole.value = 'cliente';
+                inputUsername.placeholder = 'Ej. Juan Carlos / cliente@nexus.com';
+            } else {
+                btnTrabajador.classList.add('active');
+                btnCliente.classList.remove('active');
+                inputRole.value = 'trabajador';
+                inputUsername.placeholder = 'Ej. Admin / admin@nexus.com';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentRole = document.getElementById('userRole').value;
+            selectRole(currentRole || 'cliente');
+        });
+    </script>
+</body>
+</html>
